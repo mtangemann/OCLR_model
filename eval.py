@@ -4,6 +4,7 @@ import einops
 import numpy as np
 import utils as ut
 import config as cg
+from pathlib import Path
 
 from argparse import ArgumentParser
 from models.oclr import OCLR
@@ -86,6 +87,7 @@ def eval(val_loader, model, device, Eval=False, args = None):
                     _, _, _, H, W = gt_m.size()
                     ut.save_vis_results(mask_m_hung[i:i+1], mask_am_hung[i:i+1], (H, W), dataset, category, filenames, save_path)
         mean_iou_m, mean_iou_am = avgmeter.summary(dataset)
+    avgmeter.save(Path(save_path) / "results.json")
     return mean_iou_m, mean_iou_am
  
  

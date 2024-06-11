@@ -110,6 +110,10 @@ class AverageMeter(object):
         print(variable + ' ' + mode + ' ' + str(variable_info_mean))
         return variable_info_mean
 
+    def save(self, filename):
+        with open(filename, 'w') as f:
+            json.dump(self.variable_dic, f)
+
 
 def imwrite_indexed(filename, array, colour_palette):
     # Save indexed png for DAVIS
