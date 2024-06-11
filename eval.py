@@ -95,7 +95,8 @@ if __name__ == "__main__":
     parser.add_argument('--batch_size', type=int, default=1)
     parser.add_argument('--queries', type=int, default=3)
     # input settings
-    parser.add_argument('--dataset', type=str, default='Syn', choices=['Syn', 'DAVIS17m', 'DAVIS16', 'Segtrack', 'FBMS', 'MoCA'])
+    parser.add_argument('--dataset', type=str, default='Syn', choices=['Syn', 'DAVIS17m', 'DAVIS16', 'Segtrack', 'FBMS', 'MoCA', 'custom'])
+    parser.add_argument('--dataset_path', type=str, default=None)
     parser.add_argument('--gaps', type=str, default='1,-1')  # Two flow gaps inputs, input string should not include space in-between.
     parser.add_argument('--frames', type=int, default=5)
     # paths

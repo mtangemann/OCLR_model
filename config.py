@@ -23,7 +23,7 @@ def setup_path(args):
     dt_string = now.strftime("%Y_%m_%d_%H_%M")
     
     """ TODO: fill in the log & ckpt paths """
-    log_dir = '/path/to/logdir/'
+    log_dir = args.save_path
 
     os.makedirs(log_dir + '/logs/', exist_ok=True)
     os.makedirs(log_dir + '/models/', exist_ok=True)
@@ -216,6 +216,15 @@ def setup_dataset(args):
 
         gt_res = None
     
+    elif dataset == "custom":
+        basepath = args.dataset_path
+        val_flow_dir = basepath + '/Flows_gap1'
+        val_img_dir = basepath + '/JPEGImages'
+        val_gt_dir = basepath + '/Annotations'
+        val_data_dir = [val_flow_dir, val_img_dir, val_gt_dir]
+        val_seq = [os.path.basename(x) for x in gb.glob(os.path.join(val_img_dir, '*'))]
+        gt_res = None
+
     else:
         raise ValueError('Unknown Setting.')
 
